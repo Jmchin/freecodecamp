@@ -5,15 +5,15 @@ var sessionTime = 25
 
 // update breakLng, sessionLng and timerNum HTML
 var updateBreak = function (min) {
-  document.getElementById('breakLng').innerHTML = min
+  document.getElementById('breakLng').innerHTML = String(min)
 }
 
 var updateSession = function (min) {
-  document.getElementById('sessionLng').innerHTML = min
+  document.getElementById('sessionLng').innerHTML = String(min)
 }
 
 var updateTimer = function (min) {
-  document.getElementById('timerNum').innerHTML = min + ' : 00'
+  document.getElementById('timerNum').innerHTML = String(min + ' : 00')
 }
 
 // event listeners

@@ -1,61 +1,44 @@
-// initialize timer variables
-var state = false // timer on/off ?
+// Pomodoro constructor definition
+function Pomodoro() {
+    this.state = false;
+    this.breakTime = breakTime;
+    this.sessionTime = sessionTime;
+    // this.time = timeRemaining;
+    // this.id = session;
+}
+
+// define variables
 var breakTime = 5
 var sessionTime = 25
 
-// update breakLng, sessionLng and timerNum HTML
-var updateBreak = function (min) {
-  document.getElementById('breakLng').innerHTML = String(min)
-}
+// add functionality to Pomodoro prototype
+Pomodoro.prototype = {
+    constructor: Pomodoro,
+    updateBreak: function() {
+        document.getElementById('breakLng').innerHTML = String(breakTime);
+    },
+    updateSession: function() {
+        document.getElementById('sessionLng').innerHTML = String(sessionTime); 
+    }
+};
 
-var updateSession = function (min) {
-  document.getElementById('sessionLng').innerHTML = String(min)
-}
-
-var updateTimer = function (min) {
-  document.getElementById('timerNum').innerHTML = String(min + ' : 00')
-}
+// create instance pomodoro of Object Pomodoro
+var pomodoro = new Pomodoro();
 
 // event listeners
-document.getElementById('run').addEventListener('click', function () {
-  if (state === false) {
-    state = true
-  } else {
-    state = false
-  }
-})
-
-document.getElementById('break-down').addEventListener('click', function () {
+document.getElementById('break-down').addEventListener('click', function() {
   if (breakTime > 0) {
     breakTime--
   } else {
     breakTime === 0
   }
-  updateBreak(breakTime)
+  pomodoro.updateBreak()
 })
 
-document.getElementById('break-up').addEventListener('click', function () {
+document.getElementById('break-up').addEventListener('click', function() {
   breakTime++
-  updateBreak(breakTime)
+  pomodoro.updateBreak()
 })
 
-document.getElementById('session-down').addEventListener('click', function () {
-  if (sessionTime > 0) {
-    sessionTime--
-  } else {
-    sessionTime === 0
-  }
-  updateSession(sessionTime)
-  updateTimer(sessionTime)
-})
-
-document.getElementById('session-up').addEventListener('click', function () {
-  sessionTime++
-  updateSession(sessionTime)
-  updateTimer(sessionTime)
-})
-
-// update times on page load
-updateBreak(breakTime)
-updateSession(sessionTime)
-updateTimer(sessionTime)
+pomodoro.updateBreak();
+pomodoro.updateSession();

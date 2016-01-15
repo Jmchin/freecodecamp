@@ -15,11 +15,16 @@ function Pomodoro() {
 // add functionality to Pomodoro prototype
 Pomodoro.prototype = {
     constructor: Pomodoro,
-    startTimer: function() {
-        
+    toggleTimer: function() {
+        if (this.state === false) {
+            this.state = true
+        } else {
+            this.state = false
+        }
     },
     updateBreak: function() {
         document.getElementById('breakLng').textContent = String(breakTime);
+        // convert time to milliseconds
         pomodoro.breakTime = breakTime * 60 * 1000;
     },
     updateSession: function() {
@@ -35,18 +40,41 @@ Pomodoro.prototype = {
 var pomodoro = new Pomodoro();
 
 // event listeners
-document.getElementById('break-down').addEventListener('click', function() {
-    if (breakTime > 0) {
-        breakTime--
-    } else {
-        breakTime === 0
+var minusBreak = document.getElementById('break-down');
+minusBreak.addEventListener('click', function() {
+    if (pomodoro.state === false && breakTime > 0) {
+        breakTime--;
     }
-    pomodoro.updateBreak()
+    pomodoro.updateBreak();
 })
 
-document.getElementById('break-up').addEventListener('click', function() {
-    breakTime++
-    pomodoro.updateBreak()
+var plusBreak = document.getElementById('break-up');
+plusBreak.addEventListener('click', function() {
+    if (pomodoro.state === false) {
+        breakTime++;
+    }
+    pomodoro.updateBreak();
+})
+
+var minusSession = document.getElementById('session-down');
+minusSession.addEventListener('click', function() {
+    if (pomodoro.state === false && sessionTime > 0) {
+        sessionTime--;
+    }
+    pomodoro.updateSession();
+})
+
+var plusSession = document.getElementById('session-up');
+plusSession.addEventListener('click', function() {
+    if (pomodoro.state === false) {
+        sessionTime++;
+    }
+    pomodoro.updateSession();
+})
+
+var toggleState = document.getElementById('toggle');
+toggleState.addEventListener('click', function() {
+    pomodoro.toggleTimer();
 })
 
 pomodoro.updateBreak();

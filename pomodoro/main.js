@@ -2,7 +2,6 @@
 var breakTime = 5
 var sessionTime = 25
 
-
 // Pomodoro constructor definition
 function Pomodoro() {
     this.state = false;
@@ -30,11 +29,17 @@ Pomodoro.prototype = {
     updateSession: function() {
         document.getElementById('sessionLng').textContent = String(sessionTime);
         pomodoro.sessionTime = sessionTime * 60 * 1000;
+        pomodoro.updateTime(sessionTime);
     },
-    updateTime: function() {
-        document.getElementById('timerNum').textContent = String(this.time / 1000);
+    updateTime: function(time) {
+        document.getElementById('timerNum').textContent = String(decorateTime(time));
     }
 };
+
+function decorateTime(time) {
+    time = String(time) + ' : 00';
+    return time;
+}
 
 // create instance pomodoro of Object Pomodoro
 var pomodoro = new Pomodoro();
@@ -79,3 +84,4 @@ toggleState.addEventListener('click', function() {
 
 pomodoro.updateBreak();
 pomodoro.updateSession();
+pomodoro.updateTime(sessionTime);

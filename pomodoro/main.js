@@ -1,19 +1,22 @@
+var timer = document.getElementById("timerNum");
+var toggle = document.getElementById("toggle");
+
 // Pomodoro constructor definition
 function Pomodoro() {
   this.state = false;
   this.breakTime = 5;
   this.sessionTime = 25;
-  this.time;
-  this.id;
+  this.time = this.sessionTime;
+  this.id = 'session';
 }
 
-// add functionality to Pomodoro prototype
+// add methods to Pomodoro prototype
 Pomodoro.prototype = {
   toggleTimer: function() {
     if (this.state === false) {
-      this.state = true
+      this.state = true;
     } else {
-      this.state = false
+      this.state = false;
     }
   },
   updateBreak: function() {
@@ -23,12 +26,8 @@ Pomodoro.prototype = {
     document.getElementById('sessionLng').textContent = String(this.sessionTime);
     this.updateTime(this.sessionTime);
   },
-  decorateTime: function(time) {
-    time = String(time) + ' : 00';
-    return time;
-  },
   updateTime: function(time) {
-    document.getElementById('timerNum').textContent = String(this.decorateTime(time));
+    document.getElementById('timerNum').textContent = String(decorateTime(time));
   },
   initialize: function() {
     this.updateBreak();
@@ -37,17 +36,33 @@ Pomodoro.prototype = {
   }
 };
 
+// helper functions
+function decorateTime(time) {
+  time = String(time) + ' : 00';
+  return time;
+}
+
+function startCountdown() {
+  setTimeout(countdown, 1000);
+}
+
+function countdown() {
+  currentMins = Math.floor(pomodoro.time);
+}
+
 // create instance pomodoro of Object Pomodoro
 var pomodoro = new Pomodoro();
 
 // event listeners
+toggle.addEventListener("click", startCountdown);
+
 var minusBreak = document.getElementById('break-down');
 minusBreak.addEventListener('click', function() {
   if (pomodoro.state === false && pomodoro.breakTime > 0) {
-    pomodoro.breakTime--
+    pomodoro.breakTime--;
   }
   pomodoro.updateBreak();
-})
+});
 
 var plusBreak = document.getElementById('break-up');
 plusBreak.addEventListener('click', function() {
@@ -55,7 +70,7 @@ plusBreak.addEventListener('click', function() {
     pomodoro.breakTime++;
   }
   pomodoro.updateBreak();
-})
+});
 
 var minusSession = document.getElementById('session-down');
 minusSession.addEventListener('click', function() {
@@ -63,7 +78,7 @@ minusSession.addEventListener('click', function() {
     pomodoro.sessionTime--;
   }
   pomodoro.updateSession();
-})
+});
 
 var plusSession = document.getElementById('session-up');
 plusSession.addEventListener('click', function() {
@@ -71,11 +86,11 @@ plusSession.addEventListener('click', function() {
     pomodoro.sessionTime++;
   }
   pomodoro.updateSession();
-})
+});
 
 var toggleState = document.getElementById('toggle');
 toggleState.addEventListener('click', function() {
   pomodoro.toggleTimer();
-})
+});
 
 pomodoro.initialize();

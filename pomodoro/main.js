@@ -35,6 +35,7 @@ Pomodoro.prototype = {
   startTimer: function() {
     var timer = document.getElementById('timerNum');
     var that = this;
+    this.isTimerRunning = !this.isTimerRunning;
 
     this.timerHandler = setInterval(function() {
       if (that.runningTime > 0) {
@@ -49,7 +50,7 @@ Pomodoro.prototype = {
   },
 
   stopTimer: function() {
-    clearInterval(this.timeHandler);
+    clearInterval(this.timerHandler);
   },
 
   setTimer: function() {
@@ -79,31 +80,37 @@ var sessionT = document.getElementById('sessionLng');
 
 var toggleTimer = document.getElementById('toggle');
 toggleTimer.addEventListener('click', function() {
+  if (!pomodoro.isTimerRunning) {
     pomodoro.startTimer();
+  } else {
+    pomodoro.isTimerRunning = !pomodoro.isTimerRunning;
+    pomodoro.stopTimer();
+  }
 });
 
 var plusBreak = document.getElementById('break-up');
-plusBreak.addEventListener("click", function() {
+plusBreak.addEventListener('click', function() {
   modifyTime(breakT, +1);
   pomodoro.setTimer();
 });
 
 var minusBreak = document.getElementById('break-down');
-minusBreak.addEventListener("click", function() {
+minusBreak.addEventListener('click', function() {
   modifyTime(breakT, -1);
   pomodoro.setTimer();
 });
 
 var plusSession = document.getElementById('session-up');
-plusSession.addEventListener("click", function() {
+plusSession.addEventListener('click', function() {
   modifyTime(sessionT, +1);
   pomodoro.setTimer();
 });
 
 var minusSession = document.getElementById('session-down');
-minusSession.addEventListener("click", function() {
+minusSession.addEventListener('click', function() {
   modifyTime(sessionT, -1);
   pomodoro.setTimer();
 });
 
+// get app ready on document load
 pomodoro.setTimer();

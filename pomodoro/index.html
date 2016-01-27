@@ -9,29 +9,29 @@
 </head>
 
 <body>
+  <h1 class="banner">Pomodoro Timer</h1>
   <div class="container--fluid">
-    <h1 class="banner">Pomodoro Timer</h2>
-      <div class="container--ctrl">
-        <div class="breakCtrl">
-          <p>Break Length</p>
-          <div class="container--btn">
-            <span id="break-down" class="btn minus no-highlight">-</span>
-            <span id="breakLng" class="number">5</span>
-            <span id="break-up" class="btn plus no-highlight">+</span>
-          </div>
-        </div>
-        <div class="sessionCtrl">
-          <p>Session Length</p>
-          <div class="container--btn">
-            <span id="session-down" class="btn minus no-highlight">-</span>
-            <span id="sessionLng" class="number">25</span>
-            <span id="session-up" class="btn plus no-highlight">+</span>
-          </div>
+    <div class="container--ctrl">
+      <div class="breakCtrl">
+        <p>Break</p>
+        <div class="container--btn">
+          <span id="break-down" class="btn minus no-highlight">-</span>
+          <span id="breakLng" class="number">5</span>
+          <span id="break-up" class="btn plus no-highlight">+</span>
         </div>
       </div>
-      <div id="toggle" class="timer">
-        <p id="timerNum"></p>
+      <div class="sessionCtrl">
+        <p>Session</p>
+        <div class="container--btn">
+          <span id="session-down" class="btn minus no-highlight">-</span>
+          <span id="sessionLng" class="number">25</span>
+          <span id="session-up" class="btn plus no-highlight">+</span>
+        </div>
       </div>
+    </div>
+    <div id="toggle" class="timer">
+      <p id="timerNum"></p>
+    </div>
   </div>
 </body>
 

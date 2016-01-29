@@ -84,11 +84,9 @@ h1, h2, h3, h4, h5, h6, p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 300px;
-  width: 300px;
-  /*border: 2px solid #f9ed9b;*/
-  /*border-radius: 50%;*/
-  /*margin-top: 10vh;*/
+  height: 200px;
+  width: 200px;
+  padding-top: 35px;
   cursor: pointer;
 }
 .timer p {

@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6, p {
   text-align: center;
   /*letter-spacing: 1em;*/
   padding-top: 30px;
+  font-size: 3em;
 }
 .container--ctrl {
   display: flex;

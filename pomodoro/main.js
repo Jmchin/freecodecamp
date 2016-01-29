@@ -68,6 +68,11 @@ Pomodoro.prototype = {
     seconds = parseInt(timerID.textContent, 10) * 60;
     this.runningTime = seconds;
     timer.textContent = this.getTime(seconds);
+
+    // automatically start break timer after work timer ends
+    if (!this.isWorkTime) {
+      this.startTimer();
+    }
   }
 };
 
@@ -90,26 +95,34 @@ toggleTimer.addEventListener('click', function() {
 
 var plusBreak = document.getElementById('break-up');
 plusBreak.addEventListener('click', function() {
-  modifyTime(breakT, +1);
-  pomodoro.setTimer();
+  if (!pomodoro.isTimerRunning) {
+    modifyTime(breakT, +1);
+    pomodoro.setTimer();
+  }
 });
 
 var minusBreak = document.getElementById('break-down');
 minusBreak.addEventListener('click', function() {
-  modifyTime(breakT, -1);
-  pomodoro.setTimer();
+  if (!pomodoro.isTimerRunning) {
+    modifyTime(breakT, -1);
+    pomodoro.setTimer();
+  }
 });
 
 var plusSession = document.getElementById('session-up');
 plusSession.addEventListener('click', function() {
-  modifyTime(sessionT, +1);
-  pomodoro.setTimer();
+  if (!pomodoro.isTimerRunning) {
+    modifyTime(sessionT, +1);
+    pomodoro.setTimer();
+  }
 });
 
 var minusSession = document.getElementById('session-down');
 minusSession.addEventListener('click', function() {
-  modifyTime(sessionT, -1);
-  pomodoro.setTimer();
+  if (!pomodoro.isTimerRunning) {
+    modifyTime(sessionT, -1);
+    pomodoro.setTimer();
+  }
 });
 
 // get app ready on document load

@@ -29,6 +29,7 @@ header {
 }
 .container--btn {
   display: flex;
+  width: 66%;
   flex-direction: row;
   flex-wrap: wrap-reverse;
   justify-content: center;
@@ -39,4 +40,5 @@ button {
   height: 60px;
   width: 30%;
   padding: 10px 15px;
+  margin:5px;
 }

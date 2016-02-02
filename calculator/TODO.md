@@ -1,7 +1,6 @@
 ## HTML
 * header
   * banner title
-
 * calculator
   * outer body
   * buttons

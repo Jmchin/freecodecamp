@@ -63,7 +63,8 @@ header {
 .display span {
   font-size: 36px;
   color: #575757;
-  padding-right: 5px;
+  margin: 0 5px 0 5px;
+  overflow: hidden;
 }
 .container--btn {
   flex: 1 1 auto;

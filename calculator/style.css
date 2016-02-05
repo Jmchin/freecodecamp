@@ -63,6 +63,7 @@ header {
 .display span {
   font-size: 36px;
   color: #575757;
+  padding-right: 5px;
 }
 .container--btn {
   flex: 1 1 auto;
@@ -116,4 +117,14 @@ button:active {
 }
 #DEL {
   color: #ffb96a;
+}
+
+footer {
+  font-family: 'Share Tech Mono';
+  text-align: center;
+  padding-top: 8px;
+}
+
+footer a {
+  text-decoration: none;
 }

@@ -1,16 +1,29 @@
 var display = document.getElementById('num-display');
+var operators = ['-', '+', '*', '/', '=', 'AC'];
 
 // define Calculator object
 function Calculator() {
-  this.ans = "";
-  this.disp = "";
+  this.ans = '';
+  this.disp = '0';
 }
 
 // extend Calculator functionality
 Calculator.prototype = {
   updateDisplay: function(value) {
-    this.disp += value;
+    if (this.disp === '0') {
+      this.disp = value;
+    } else {
+      this.disp += value;
+    }
     display.textContent = this.disp;
+  },
+  clearDisplay: function() {
+    this.disp = '0';
+    this.updateDisplay(this.disp);
+  },
+  delete: function() {
+    this.disp = this.disp.slice(0, -1);
+    display.textContent = display.textContent.slice(0, -1);
   }
 };
 
@@ -26,6 +39,18 @@ for any events on the children. This is more memory efficient.
 document.getElementById('button-tbl').addEventListener('click', function(e) {
   if (e.target && e.target.nodeName.toLowerCase() === 'button') {
     var value = e.target.value;
-    calc.updateDisplay(value);
+
+    switch (e.target.value) {
+      case 'AC':
+        calc.clearDisplay();
+        break;
+      case 'DEL':
+        calc.delete();
+        break;
+      default:
+        calc.updateDisplay(value);
+    }
   }
 });
+
+calc.updateDisplay(calc.disp);
